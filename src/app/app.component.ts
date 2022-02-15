@@ -1,3 +1,13 @@
+/**
+ * 
+ * @fileoverview AppComponent
+ *
+ * @version 1.0
+ *
+ * @author Milan Gotera <milangotera@gmail.com>
+ *
+*/
+
 import { Component } from '@angular/core';
 
 @Component({
