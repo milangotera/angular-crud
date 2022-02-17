@@ -40,6 +40,14 @@ export class ApiService {
         )
     }
 
+    createdEmployee(employee: any): Observable<Employee> {
+        return this.http.post<Employee>(this.apiURL + '/employees', employee)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+        )
+    }
+
     deleteEmployee(id: number): Observable<Employee> {
         return this.http.delete<Employee>(this.apiURL + '/employees/' + id)
             .pipe(
@@ -49,14 +57,7 @@ export class ApiService {
     }
 
     handleError(error: any) {
-        let errorMessage = '';
-        if(error.error instanceof ErrorEvent) {
-            errorMessage = error.error.message;
-        } else {
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        window.alert(errorMessage);
-        return throwError(errorMessage);
+        return throwError({ error: error.error, status: error.status });
     }
 
 }
