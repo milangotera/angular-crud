@@ -56,6 +56,14 @@ export class ApiService {
         )
     }
 
+    updateEmployee(employee: any): Observable<Employee> {
+        return this.http.put<Employee>(this.apiURL + '/employees', employee)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+        )
+    }
+
     deleteEmployee(id: number): Observable<Employee> {
         return this.http.delete<Employee>(this.apiURL + '/employees/' + id)
             .pipe(

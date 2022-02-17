@@ -1,1 +1,48 @@
-<p>edit works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-light border" routerLink="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="col-12 mt-4" *ngIf="message">
+            <p>
+                <ngb-alert [dismissible]="false">
+                  <strong>Lo siento!</strong> {{ message }}.
+                </ngb-alert>
+            </p>
+        </div>
+        <div class="col-12 mt-4">
+            <form>
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="employee.name">
+                    <small class="form-text text-muted error-message" *ngIf="error.name">{{ error.name }}.</small>
+                </div>
+                <div class="form-group">
+                    <label>Cargo</label>
+                    <input type="text" name="position" class="form-control" [(ngModel)]="employee.position">
+                    <small class="form-text text-muted error-message" *ngIf="error.position">{{ error.position }}.</small>
+                </div>
+                <div class="form-group">
+                    <label>Edad</label>
+                    <input type="number" name="age" class="form-control" [(ngModel)]="employee.age">
+                    <small class="form-text text-muted error-message" *ngIf="error.age">{{ error.age }}.</small>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de contratación</label>
+                    <input type="date" name="date" class="form-control" [(ngModel)]="employee.date">
+                    <small class="form-text text-muted error-message" *ngIf="error.date">{{ error.date }}.</small>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 mt-4" style="text-align: right;">
+            <button type="button" class="btn btn-primary" (click)="updateEmployee()">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>
+
