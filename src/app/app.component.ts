@@ -10,34 +10,29 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Employee } from './models/employee';
+import { ApiService } from './services/api/api.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
-  employees: Employee[] = [
-    {
-      id: 1,
-      name: 'Milan Gotera',
-      position: 'Papá',
-      age: 34,
-      date: '31-10-1989'
-    },
-    {
-      id: 2,
-      name: 'Thiago Gotera',
-      position: 'Hijo',
-      age: 2,
-      date: '09-05-2019'
-    },
-  ];
+    employees: Employee[];
 
-  constructor() { }
+    constructor(
+        private api: ApiService
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.loadEmployees();
+    }
+
+    loadEmployees() {
+        return this.api.getEmployees().subscribe((response: any) => {
+            this.employees = response.employees;
+        });
+    }
 
 }
