@@ -41,8 +41,8 @@ export class NewComponent implements OnInit {
         private router: Router
     ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
     createdEmployee() {
         this.error = {

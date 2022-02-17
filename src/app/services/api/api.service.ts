@@ -48,6 +48,14 @@ export class ApiService {
         )
     }
 
+    getEmployee(id: number): Observable<Employee> {
+        return this.http.get<Employee>(this.apiURL + '/employees/' + id)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+        )
+    }
+
     deleteEmployee(id: number): Observable<Employee> {
         return this.http.delete<Employee>(this.apiURL + '/employees/' + id)
             .pipe(

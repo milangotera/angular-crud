@@ -9,6 +9,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-show',
@@ -17,9 +18,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowComponent implements OnInit {
 
-  constructor() { }
+    employee: any = {
+        name: null,
+        age: null,
+        date: null,
+        position: null,
+    };
 
-  ngOnInit(): void {
-  }
+    error: any = {
+        name: null,
+        age: null,
+        date: null,
+        position: null,
+    };
+
+    id: number = 1;
+
+    message: string = '';
+
+    constructor(
+        public api: ApiService,
+    ) { }
+
+    ngOnInit(): void {
+        this.getEmployee();
+    }
+
+    getEmployee() {
+        this.api.getEmployee(this.id).subscribe( (success: any) => {
+            this.employee = success.employee;
+        }, (danger: any) => {
+            this.message = danger.error.message;
+        });
+    }
 
 }
