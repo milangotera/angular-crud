@@ -93,6 +93,7 @@ export class EmployeeService {
     public _reload() {
         return this.api.getEmployees().subscribe((response: any) => {
             this.employees = response.employees;
+            this._search$.next();
         });
     }
 

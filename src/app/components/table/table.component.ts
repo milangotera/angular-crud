@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
+import { ApiService } from '../../services/api/api.service';
 import { NgbdSortableHeader, SortEvent } from '../../directives/sortable.directive';
 
 @Component({
@@ -32,7 +33,8 @@ export class TableComponent implements OnInit {
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
     constructor(
-        public service: EmployeeService
+        public service: EmployeeService,
+        public api: ApiService
     ) {
         this.service._reload();
         this.total$ = service.total$;
@@ -52,6 +54,12 @@ export class TableComponent implements OnInit {
 
         this.service.sortColumn    = column;
         this.service.sortDirection = direction;
+    }
+
+    deleteEmployee(id: number) {
+        this.api.deleteEmployee(id).subscribe((response: any) => {
+            this.service._reload();
+        });
     }
 
 }
