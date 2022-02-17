@@ -1,0 +1,18 @@
+<table class="table table-bordered app-table">
+    <thead class="table-secondary">
+        <tr>
+            <th scope="col" sortable="name" >Nombre<br />(Cargo)</th>
+            <th scope="col"sortable="age" >Edad</th>
+            <th scope="col" sortable="date" >Fecha de contratación</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees;">
+            <td>{{ employee.name }}<br />{{ employee.position }}</td>
+            <td>{{ employee.age }}</td>
+            <td>{{ employee.date }}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

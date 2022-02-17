@@ -16,11 +16,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

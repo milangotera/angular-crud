@@ -11,7 +11,7 @@
 export interface Employee {
     id: number;
     name: string;
-    position: boolean;
+    position: string;
     age: number;
     date: string;
 }
