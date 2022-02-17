@@ -9,8 +9,6 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { Employee } from './models/employee';
-import { ApiService } from './services/api/api.service';
 
 @Component({
     selector: 'app-root',
@@ -19,10 +17,8 @@ import { ApiService } from './services/api/api.service';
 })
 export class AppComponent implements OnInit {
 
-    employees: Employee[];
-
     constructor(
-        private api: ApiService
+
     ) { }
 
     ngOnInit(): void {

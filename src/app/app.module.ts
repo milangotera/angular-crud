@@ -25,12 +25,21 @@ import { ApiService } from './services/api/api.service';
 
 import { NgbdSortableHeader } from './directives/sortable.directive';
 
+import { EditComponent } from './components/edit/edit.component';
+import { NewComponent } from './components/new/new.component';
+import { ListComponent } from './components/list/list.component';
+import { ShowComponent } from './components/show/show.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     TableComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
+    EditComponent,
+    NewComponent,
+    ListComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,
