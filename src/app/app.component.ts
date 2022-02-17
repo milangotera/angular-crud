@@ -26,13 +26,6 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.loadEmployees();
-    }
-
-    loadEmployees() {
-        return this.api.getEmployees().subscribe((response: any) => {
-            this.employees = response.employees;
-        });
     }
 
 }

@@ -1,18 +1,54 @@
-<table class="table table-bordered app-table">
-    <thead class="table-secondary">
-        <tr>
-            <th scope="col" sortable="name" >Nombre<br />(Cargo)</th>
-            <th scope="col"sortable="age" >Edad</th>
-            <th scope="col" sortable="date" >Fecha de contratación</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let employee of employees;">
-            <td>{{ employee.name }}<br />{{ employee.position }}</td>
-            <td>{{ employee.age }}</td>
-            <td>{{ employee.date }}</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+    <form>
+        <div class="mb-3 row">
+           
+            <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+            <div class="col-xs-3 col-sm-auto">
+            <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm">
+            </div>
+            <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+        </div>
+
+        <table class="table table-striped border">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" sortable="name" (sort)="onSort($event)">Nombre<br>(cargo)</th>
+                    <th scope="col" sortable="age" (sort)="onSort($event)">Edad</th>
+                    <th scope="col" sortable="date" (sort)="onSort($event)">Fecha de contratación</th>
+                    <th scope="col">Acciòn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees$ | async">
+                    <th scope="row">{{ employee.id }}</th>
+                    <td>
+                        <ngb-highlight [result]="employee.name" [term]="service.searchTerm"></ngb-highlight>
+                        <br>
+                        <ngb-highlight [result]="employee.position" [term]="service.searchTerm"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="employee.age | number" [term]="service.searchTerm"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="employee.date" [term]="service.searchTerm"></ngb-highlight>
+                    </td>
+                    <th scope="row"></th>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+            
+            <ngb-pagination
+                [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+            </ngb-pagination>
+
+            <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                <option [ngValue]="2">2 items per page</option>
+                <option [ngValue]="4">4 items per page</option>
+                <option [ngValue]="6">6 items per page</option>
+            </select>
+
+        </div>
+
+    </form>
